@@ -1,0 +1,105 @@
+Research Direction II: Learning NIR-to-RGB Translation with Limited and Unreliable RGB Supervision
+Proposed Paper Title: Learning Visible Reconstruction from NIR with Scarce and Degraded RGB Supervision
+3.1 Research Gap
+A major difficulty in NIR-to-RGB translation is the dependence on paired NIR and RGB training images.
+The problem becomes more challenging under adverse conditions because the corresponding RGB image may itself contain severe noise, blur, saturation, low visibility, or other degradations.
+For example, if we train a model using a clear NIR image paired with a severely dark RGB image, the conventional reconstruction objective encourages the model to reproduce the degraded RGB observation.
+This may not be the intended objective if we want to recover a more useful visible appearance.
+However, we must distinguish reconstructing the simultaneously observed RGB image from estimating a clean or better-exposed visible reference. These are different targets and cannot be treated as interchangeable.
+The central research question is:
+How can we learn useful visible reconstruction from NIR when reliable paired RGB training images are limited, degraded, or unavailable?
+This problem is relevant to nighttime imaging, adverse-weather capture, and other situations where collecting dependable paired RGB supervision is difficult.
+3.2 Research Objective
+We would investigate a learning framework capable of using training data with different supervision quality.
+The available data may be represented as:
+[
+\mathcal{D}=
+\mathcal{D}{\mathrm{reliable}}
+\cup
+\mathcal{D}{\mathrm{degraded}}
+\cup
+\mathcal{D}_{\mathrm{NIR-only}}
+]
+where:
+(\mathcal{D}_{\mathrm{reliable}}) contains paired NIR–RGB images with trustworthy visible references.
+(\mathcal{D}_{\mathrm{degraded}}) contains paired observations affected by measurable RGB degradation.
+(\mathcal{D}_{\mathrm{NIR-only}}) contains NIR images without paired RGB supervision.
+The main research challenge is determining how these different data sources should contribute to learning without introducing incorrect color or structural information.
+Simply combining supervised and unsupervised losses would not be sufficient novelty. We would need a principled learning mechanism and evidence that it outperforms standard semi-supervised, unpaired and pseudo-labeling approaches.
+3.3 Proposed Datasets
+Dataset
+Purpose
+IDD-AW
+Adverse-condition paired image analysis
+FANVID
+Controlled reduction of available paired supervision
+EPFL RGB–NIR
+Limited-data learning and independent evaluation
+VCIP2020
+Established colorization comparison
+Additional controlled RGB–NIR captures
+Validate reliable and degraded supervision using measured references
+
+3.4 Experiments
+We would train models using progressively smaller proportions of reliable paired supervision, such as:
+1%, 5%, 10%, 25%, and 100%.
+These are proposed experimental settings.
+We would also investigate how different types and severities of RGB-reference degradation affect reconstruction learning.
+The method would be compared against fully supervised training, limited-pair supervised training, CoColor, unpaired translation, conventional self-training, and appropriate pseudo-pairing baselines.
+Performance should be evaluated using trustworthy visible reference images, rather than treating synthetic or hypothetical clear-weather RGB images as automatically correct ground truth.
+3.5 Expected Research Contribution
+The intended contribution is a new learning approach that remains effective when reliable RGB supervision is scarce.
+The research would be particularly meaningful if the method improves reconstruction without requiring large amounts of accurately paired RGB training data.
+Potential publication scope: IEEE TIP, IEEE TCI, CVPR, ICCV, or another suitable high-quality journal/conference.
+Major risk: Unpaired image translation and limited-data colorization already exist. We would need to demonstrate that the proposed method solves a meaningful supervision-quality limitation that conventional approaches do not adequately handle.
+4. Research Direction III: Spectral Ambiguity and Reliable NIR-to-RGB Reconstruction
+Proposed Paper Title: Identifiability-Aware NIR-to-Visible Reconstruction under Spectral Ambiguity
+4.1 Research Gap
+One fundamental limitation of NIR-to-RGB translation is that a single NIR image does not always contain enough information to determine the correct visible colors.
+Two materials can exhibit similar NIR reflectance while having significantly different visible appearances.
+Consequently, even a powerful reconstruction network may produce a plausible RGB image without being able to determine whether its predicted colors are correct.
+This is not simply an architectural limitation; it is related to the information available in the spectral measurement itself.
+The main research question is:
+Can we identify situations where visible appearance is inherently ambiguous from NIR measurements and develop reconstruction models that represent this ambiguity reliably?
+4.2 Research Objective
+We would first characterize ambiguity using measured spectral data.
+Let (F_N(\rho)) represent the NIR sensor response for a material spectrum (\rho).
+Two materials may satisfy:
+[
+|F_N(\rho_a)-F_N(\rho_b)|\leq\epsilon
+]
+while their visible appearances differ significantly:
+[
+\Delta E_{00}(C_a,C_b)>\tau
+]
+This means that the sensor cannot reliably distinguish those materials under the specified measurement and noise conditions, even though their visible appearances are different.
+We would investigate how to characterize such cases and develop a reconstruction framework that can express uncertainty or multiple valid color hypotheses.
+The research must go beyond generating several visually plausible RGB images. We need to evaluate whether the predicted uncertainty corresponds to physically supported ambiguity.
+4.3 Proposed Datasets
+Dataset
+Purpose
+Full-spectrum ICVL RAW
+Spectral simulation covering visible and NIR wavelengths
+USGS Spectral Library V7
+Material reflectance comparisons and ambiguity analysis
+IDD-AW
+Testing reconstruction reliability under adverse conditions
+EPFL RGB–NIR
+Independent paired reconstruction evaluation
+
+The complete ICVL spectral data are important because the commonly used 31-band visible subset does not contain 850 nm and 940 nm NIR measurements.
+4.4 Experiments
+We would investigate:
+Material pairs with similar NIR responses and different visible appearances.
+Reconstruction errors associated with spectral ambiguity.
+Whether deterministic models become confidently incorrect in ambiguous cases.
+Whether probabilistic reconstruction models generate informative alternatives.
+Whether the proposed method gives better uncertainty calibration and more useful prediction sets than existing approaches.
+Possible evaluation metrics include color error, sample-based probabilistic scores, empirical coverage, prediction-set size, and performance on held-out materials and sensors.
+4.5 Expected Research Contribution
+The intended contribution is a scientifically grounded approach to evaluating and representing the limits of NIR-based visible reconstruction.
+This direction could be important because conventional reconstruction benchmarks generally compare a prediction against one RGB target, even when the underlying inverse problem admits multiple plausible outcomes.
+However, spectral metamerism, diffusion-based colorization and conformal uncertainty estimation are already established research areas.
+Therefore, the novelty must come from a demonstrably new inference or evaluation principle, not merely adding an uncertainty map.
+Potential publication scope: CVPR, ICCV, IEEE TCI, IEEE TIP, or computational imaging venues.
+Major risk: Existing generative reconstruction models combined with standard calibration may already provide comparable results. This needs to be tested before we finalize any architecture.
