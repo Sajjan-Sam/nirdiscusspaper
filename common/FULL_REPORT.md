@@ -8,10 +8,10 @@ Every score the coordinator relied on is in the notes:
 
 | Candidate | A\* | Q1 | Source |
 |---|---|---|---|
-| ALT-1′ | 6, ceiling 7 | 8 | [alternatives audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/alternative_astar_ideas.md>) |
-| Paper A′ (reframe) | 6 (7 if the decisive experiment is clean, 4 if it is not) | 7.5 | [reframe audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_reframe_physics_ood.md>) |
-| Paper B | 3–4 | 6 (5 without light-source stratification) | [Paper B audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperB_novelty_audit.md>) |
-| Paper C | 4 | 6.5 | [venues and Paper C note](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/venues_figures_and_paperC.md>) |
+| ALT-1′ | 6, ceiling 7 | 8 | [alternatives audit](../paper1_Astar_label_free_NIR_plugin/notes/alternative_astar_ideas.md) |
+| Paper A′ (reframe) | 6 (7 if the decisive experiment is clean, 4 if it is not) | 7.5 | [reframe audit](../paper2_Q1_physics_when_NIR_helps/notes/paperA_reframe_physics_ood.md) |
+| Paper B | 3–4 | 6 (5 without light-source stratification) | [Paper B audit](dropped_candidates/paperB_novelty_audit.md) |
+| Paper C | 4 | 6.5 | [venues and Paper C note](background_notes/venues_figures_and_paperC.md) |
 
 The original Paper A, a method paper on counterfactually supervised physics gates, fell to **5 A\* / 7 Q1** because three mid-2026 preprints pre-empted it. **TIER-MoE** already trains routing on cross-fitted, out-of-fold modality-risk targets ([arXiv 2607.27289](https://arxiv.org/abs/2607.27289)); **Boundary-Aligned Contribution Routing** already defines leave-one-modality-out utility, a negative-transfer rate and gate–utility Spearman correlations ([arXiv 2608.15261](https://arxiv.org/abs/2608.15261)); and **GAUGE** already gates on counterfactual effects ([arXiv 2608.05608](https://arxiv.org/abs/2608.05608)). So the coordinator's reading is accurate: the A\* slot is a tie at 6 between ALT-1′ and A′, and the tie has to be broken by something other than concept novelty.
 
@@ -19,9 +19,9 @@ The tie-breaker is the *kind* of evidence each paper can produce. ALT-1′ adds 
 
 A′, by contrast, studies effects that are small on real data. On IDD-AW, adding NIR to RGB gains **+4, +1, +1 and 0 mIoU** in rain, fog, low light and snow ([IDD-AW](https://arxiv.org/html/2311.14459)). Differences between gate arms on a held-out condition may therefore sit inside seed noise, which is why the reframe audit rests A′'s headline on dense metrics rather than mIoU. A\* reviewers reward numbers on public benchmarks, while journals reward careful falsification and tolerate honest nulls. The rational allocation puts the high-variance, number-driven paper in the deadline-bound A\* slot. The paper whose value survives either outcome goes into the journal slot, which has no deadline.
 
-Folding Paper C into A′ also checks out. C alone is a 6.5 Q1 paper whose central test is under-powered: with only **19–26 classes**, a two-sided Spearman test at α = 0.05 needs ρ of roughly 0.45 (n = 20) to 0.39 (n = 26). Its "physics prior plus conformal sets" structure also invites the "two loosely coupled halves" critique ([venues note](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/venues_figures_and_paperC.md>)). Keeping only its per-class spectral complementarity, as A′'s fourth physical factor, and dropping the conformal half removes both problems.
+Folding Paper C into A′ also checks out. C alone is a 6.5 Q1 paper whose central test is under-powered: with only **19–26 classes**, a two-sided Spearman test at α = 0.05 needs ρ of roughly 0.45 (n = 20) to 0.39 (n = 26). Its "physics prior plus conformal sets" structure also invites the "two loosely coupled halves" critique ([venues note](background_notes/venues_figures_and_paperC.md)). Keeping only its per-class spectral complementarity, as A′'s fourth physical factor, and dropping the conformal half removes both problems.
 
-Demoting Paper B is also justified, on three counts. It **reuses the thesis**: it takes Paper 1's P0–P4 protocols and regret-rate metric, and revives the "no-regret enhancement" idea the thesis roadmap had already retired at 3/10 ([roadmap](</home/user/lowlight/research/PUBLICATION_ROADMAP.md>)). Its **no-regret design has a logical hole**: with the gate at zero it returns the RGB-only enhancer's output, not the raw input ([Paper B audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperB_novelty_audit.md>)). And the **passive-NIR evidence is thin**: in the ICPR 2024 competition, an RGB-only Mask2Former (68.54) beat DarkVisionNet-preprocessed RGB+NIR (67.58) ([ICPR'24 report](https://arxiv.org/abs/2409.05327)).
+Demoting Paper B is also justified, on three counts. It **reuses the thesis**: it takes Paper 1's P0–P4 protocols and regret-rate metric, and revives the "no-regret enhancement" idea the thesis roadmap had already retired at 3/10 ([roadmap](https://github.com/Sajjan-Sam/lowlight/blob/main/research/PUBLICATION_ROADMAP.md)). Its **no-regret design has a logical hole**: with the gate at zero it returns the RGB-only enhancer's output, not the raw input ([Paper B audit](dropped_candidates/paperB_novelty_audit.md)). And the **passive-NIR evidence is thin**: in the ICPR 2024 competition, an RGB-only Mask2Former (68.54) beat DarkVisionNet-preprocessed RGB+NIR (67.58) ([ICPR'24 report](https://arxiv.org/abs/2409.05327)).
 
 ### Amendment 1: ALT-1′'s comparisons are only fair if the regimes are separated
 
@@ -31,15 +31,15 @@ The headline number is also softer than it looks. SegBridge's text says **69.8**
 
 ### Amendment 2: each shared tool belongs to exactly one paper
 
-The thesis's Paper 2 is built on a *K-fold cross-fitted, raw-vs-raw seed-noise-calibrated per-object treatment effect* ([roadmap](</home/user/lowlight/research/PUBLICATION_ROADMAP.md>)). A′'s utility, u = CE(RGB, ∅) − CE(RGB, NIR), uses the same estimator family: computed out of fold and standardised by a seed-disagreement null ([Paper A blueprint](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_experiment_blueprint.md>)). If both papers claim this estimator as novel, a reviewer who sees both will call it salami-slicing. The fix is for A′ to cite thesis Paper 2 and present dense utility as its *measurement instrument*, not its contribution, which is how the reframe audit already frames it. A′ should also call its pixel-level failure metric a null-calibrated **negative-transfer rate (NTR)**, citing both 2608.15261 and thesis Paper 1, rather than a new "regret rate". ALT-1′ also distils only where a signal is trustworthy, which echoes thesis Paper 2's gated distillation, so it must use *label-free teacher reliability* (entropy, confidence, agreement) as its mask and never cross-fitted utility.
+The thesis's Paper 2 is built on a *K-fold cross-fitted, raw-vs-raw seed-noise-calibrated per-object treatment effect* ([roadmap](https://github.com/Sajjan-Sam/lowlight/blob/main/research/PUBLICATION_ROADMAP.md)). A′'s utility, u = CE(RGB, ∅) − CE(RGB, NIR), uses the same estimator family: computed out of fold and standardised by a seed-disagreement null ([Paper A blueprint](../paper2_Q1_physics_when_NIR_helps/notes/paperA_experiment_blueprint.md)). If both papers claim this estimator as novel, a reviewer who sees both will call it salami-slicing. The fix is for A′ to cite thesis Paper 2 and present dense utility as its *measurement instrument*, not its contribution, which is how the reframe audit already frames it. A′ should also call its pixel-level failure metric a null-calibrated **negative-transfer rate (NTR)**, citing both 2608.15261 and thesis Paper 1, rather than a new "regret rate". ALT-1′ also distils only where a signal is trustworthy, which echoes thesis Paper 2's gated distillation, so it must use *label-free teacher reliability* (entropy, confidence, agreement) as its mask and never cross-fitted utility.
 
 The same ownership rule separates the two NIR papers. A′ owns the physics descriptors and the physics account, the controlled RGB-X benchmark on IDD-AW, and IDD-AW-C. ALT-1′ uses physics descriptors only as one ablation row of its mask, reports only two or three supervised baselines, and does not evaluate on IDD-AW-C in the main paper. This keeps A′'s first-benchmark and first-suite claims intact, even though ALT-1′ is submitted first.
 
 ### Amendment 3: five papers on one GPU needs a decision now
 
-The thesis roadmap already schedules Paper 1 for a Q1 journal in March 2027 and Paper 2 for ACM MM around April 1, at about **550 GPU-hours** for Paper 2 alone, plus a conditional Paper 3 ([roadmap](</home/user/lowlight/research/PUBLICATION_ROADMAP.md>)). The NIR papers add roughly 650–800 GPU-hours (ALT-1′) and 480–560 (A′); both are my estimates, detailed below.
+The thesis roadmap already schedules Paper 1 for a Q1 journal in March 2027 and Paper 2 for ACM MM around April 1, at about **550 GPU-hours** for Paper 2 alone, plus a conditional Paper 3 ([roadmap](https://github.com/Sajjan-Sam/lowlight/blob/main/research/PUBLICATION_ROADMAP.md)). The NIR papers add roughly 650–800 GPU-hours (ALT-1′) and 480–560 (A′); both are my estimates, detailed below.
 
-The Paper A blueprint counts about **1,870 GPU-hours available between Nov 3 and Mar 15 at 60% utilisation** ([blueprint](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_experiment_blueprint.md>)). GPU time is therefore tight but workable if A′'s heavy runs slip to April–June. The student's hours are the real constraint, so the plan below assumes that thesis Paper 3 is deferred, that a co-author (for example a HAQAGen co-author) takes the light-source annotation and the IDD-AW-C build, and that the advisor accepts A′ being submitted after the A\* deadline.
+The Paper A blueprint counts about **1,870 GPU-hours available between Nov 3 and Mar 15 at 60% utilisation** ([blueprint](../paper2_Q1_physics_when_NIR_helps/notes/paperA_experiment_blueprint.md)). GPU time is therefore tight but workable if A′'s heavy runs slip to April–June. The student's hours are the real constraint, so the plan below assumes that thesis Paper 3 is deferred, that a co-author (for example a HAQAGen co-author) takes the light-source annotation and the IDD-AW-C build, and that the advisor accepts A′ being submitted after the A\* deadline.
 
 ### The two papers share plumbing but make different claims
 
@@ -57,7 +57,7 @@ The Paper A blueprint counts about **1,870 GPU-hours available between Nov 3 and
 
 ### Every ingredient has precedent, but the combination does not
 
-The arXiv sweeps found **no paper doing open-vocabulary or zero-shot segmentation from NIR or RGB+NIR, and none evaluating open-vocabulary segmentation on IDD-AW**. Every ingredient, however, has a close neighbour ([alternatives audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/alternative_astar_ideas.md>)). The literal ALT-1, which aligns NIR to DINOv2 and then segments from it, scores only 5/10. The obvious attack is "SpectraDINO plus Talk2DINO, applied to NIR".
+The arXiv sweeps found **no paper doing open-vocabulary or zero-shot segmentation from NIR or RGB+NIR, and none evaluating open-vocabulary segmentation on IDD-AW**. Every ingredient, however, has a close neighbour ([alternatives audit](../paper1_Astar_label_free_NIR_plugin/notes/alternative_astar_ideas.md)). The literal ALT-1, which aligns NIR to DINOv2 and then segments from it, scores only 5/10. The obvious attack is "SpectraDINO plus Talk2DINO, applied to NIR".
 
 The re-scoping to ALT-1′ adds the one piece the audit identified as a real technical hole: the *teacher-degradation problem*. A NIR student trained to match RGB-teacher features on foggy or dark pairs learns to copy the degraded features, so it adds nothing exactly where NIR should help. Distilling only where the teacher is reliable lets the student exceed the teacher in degraded regions. The paper stands or falls on showing this.
 
@@ -113,7 +113,7 @@ One more caution: a September 2026 paper found that forward-facing NIR "adds lit
 2. Skip `deleted` objects, strip `_new` suffixes and map `*group` labels.
 3. Write `level3Ids` at native resolution for evaluation, plus a nearest-neighbour 1024×768 copy for training.
 4. Store RGB and NIR as lossless 1024×768 PNG.
-5. Patch `safe_iou.py` into an evaluator that accumulates one 26×26 confusion matrix per image. The released script has a hard-coded path filter and a "main classes" line that averages the wrong eight classes ([Paper A blueprint](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_experiment_blueprint.md>)).
+5. Patch `safe_iou.py` into an evaluator that accumulates one 26×26 confusion matrix per image. The released script has a hard-coded path filter and a "main classes" line that averages the wrong eight classes ([Paper A blueprint](../paper2_Q1_physics_when_NIR_helps/notes/paperA_experiment_blueprint.md)).
 
 **19-class mapping for protocol 1 (ALT-1′ only).** By my reading of the two label lists, 17 Cityscapes classes map directly onto IDD-AW level-3. Cityscapes "terrain" and "train" have no IDD-AW counterpart, and the IDD-specific classes (autorickshaw, the fallback classes, curb, guard rail, billboard, bridge) must be ignored or mapped. SegBridge's mapping is unknown, so obtain it from the authors. Until then, report both a "17 shared classes" number and a number under SegBridge's protocol.
 
@@ -125,7 +125,7 @@ One more caution: a September 2026 paper found that forward-facing NIR "adds lit
 | **R-UDA** (unlabeled target) | IDD-AW train images (3,430, labels unused) + FANVID | SegBridge, TENT, CoTTA | **RGB-only self-training on the same 3,430 images** (target-exposure control) |
 | **R-TTA** (online) | Test stream only | SegBridge (continual), TENT, CoTTA | The same TTA on the RGB-only stream, over 3 condition orders |
 
-**FANVID band matching.** Approximate IDD-AW's 740–1000 nm band by averaging FANVID's NIR1 and NIR2 ([Paper A blueprint](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_experiment_blueprint.md>)). FANVID's segmentation masks are only Mask2Former pseudo-labels, which is irrelevant here because alignment uses no labels ([dataset audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/wave1_datasets_audit.md>)).
+**FANVID band matching.** Approximate IDD-AW's 740–1000 nm band by averaging FANVID's NIR1 and NIR2 ([Paper A blueprint](../paper2_Q1_physics_when_NIR_helps/notes/paperA_experiment_blueprint.md)). FANVID's segmentation masks are only Mask2Former pseudo-labels, which is irrelevant here because alignment uses no labels ([dataset audit](background_notes/wave1_datasets_audit.md)).
 
 **Other datasets.** MCubeS (500 sets, 302/96/102, 20 material classes, NIR as a warped channel with a validity mask) loads through the StitchFusion loader ([StitchFusion repo](https://github.com/LiBingyu01/StitchFusion)). Cityscapes and ACDC serve as source and as Vireo-reproduction sanity data.
 
@@ -142,7 +142,7 @@ One more caution: a September 2026 paper found that forward-facing NIR "adds lit
 
 **Frozen part.** The frozen part is the source segmenter, S = D∘E_R. For protocols 1 and 3 it is a DINOv2-B/14 encoder E_R and a Mask2Former decoder D trained on Cityscapes' 19 classes; for protocol 2 it is the visual encoder of an OV-DGSS model (Vireo, or CAT-Seg/FC-CLIP if Vireo cannot run in 24 GB). If no public Cityscapes DINOv2 + Mask2Former checkpoint exists, train one with a frozen backbone and lightweight adapters. That is the SegBridge-style design, which reached its best results with LoRA rank 8. If the source model carries backbone adapters, "E_R" means the adapted backbone. Nothing in S is ever updated.
 
-**Student.** The NIR student E_N starts as an exact copy of E_R. Only two things are trainable: LoRA adapters (rank 16, α 32) on the attention projections of all 12 blocks, and a patch embedding initialised from the RGB one and fed the NIR band replicated to three channels. The notes confirm that DINOv2-B with LoRA rank 8–16 fits 24 GB, and that ViT-L needs batch 2–4 with gradient checkpointing ([alternatives audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/alternative_astar_ideas.md>)).
+**Student.** The NIR student E_N starts as an exact copy of E_R. Only two things are trainable: LoRA adapters (rank 16, α 32) on the attention projections of all 12 blocks, and a patch embedding initialised from the RGB one and fed the NIR band replicated to three channels. The notes confirm that DINOv2-B with LoRA rank 8–16 fits 24 GB, and that ViT-L needs batch 2–4 with gradient checkpointing ([alternatives audit](../paper1_Astar_label_free_NIR_plugin/notes/alternative_astar_ideas.md)).
 
 **Alignment loss.** For an unlabeled pixel-aligned pair (x_R, x_N), with the same crop and flip applied to both:
 
@@ -197,7 +197,7 @@ Expected condition ordering. The alternatives audit expected the largest gains "
 
 | Protocol | Classes / split | Published numbers to beat or anchor to | My target [heuristic] |
 |---|---|---|---|
-| **P1 Cityscapes → IDD-AW** | 19 Cityscapes classes, IDD-AW val | SegBridge **69.8** (text) or **65.1** (own ablation); its IMP baseline **58.4**; ACDC context ViT-S 65.8, ViT-B 69.5, ViT-L 74.2 ([supplement](https://openaccess.thecvf.com/content/CVPR2026F/supplemental/Jangamreddy_Continual_Adaptation_of_CVPRF_2026_supplemental.pdf)). Cross-dataset anchor: Cityscapes-trained InternImage-B **46** on IDD-AW ([dataset audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/wave1_datasets_audit.md>)) | **≥ 70.0** with NIR; ≥ +1.5 over the identical RGB-only pipeline; ≥ +1.0 over the target-exposure control |
+| **P1 Cityscapes → IDD-AW** | 19 Cityscapes classes, IDD-AW val | SegBridge **69.8** (text) or **65.1** (own ablation); its IMP baseline **58.4**; ACDC context ViT-S 65.8, ViT-B 69.5, ViT-L 74.2 ([supplement](https://openaccess.thecvf.com/content/CVPR2026F/supplemental/Jangamreddy_Continual_Adaptation_of_CVPRF_2026_supplemental.pdf)). Cross-dataset anchor: Cityscapes-trained InternImage-B **46** on IDD-AW ([dataset audit](background_notes/wave1_datasets_audit.md)) | **≥ 70.0** with NIR; ≥ +1.5 over the identical RGB-only pipeline; ≥ +1.0 over the target-exposure control |
 | **P2 OV-DGSS** | Sanity: Cityscapes → ACDC. New: IDD-AW, 26 classes, zero-shot | Vireo vs best open-vocabulary baseline on ACDC: night **60.6** vs FC-CLIP 40.8; fog **82.3** vs SED 69.0; rain **76.3** vs FC-CLIP 63.2; snow **76.2** vs FC-CLIP 61.5 ([Vireo](https://arxiv.org/html/2506.09881)). No published IDD-AW numbers, so our RGB-only reproductions are the baselines | Reproduce Vireo on ACDC within about 2 points under 24 GB; then the NIR plug-in gives ≥ +1.5 mIoU on IDD-AW for ≥ 2 of 3 OV models |
 | **P3 supervised IDD-AW** | 26 classes, val 475 | SixthSense Mask2Former Swin-L RGB **69.51 val**. Leaderboard: **68.54** (RGB) and **68.32 / 64.73 SmIoU** (KweenCoders RGB+NIR). Organiser RGB+NIR 67.30 ([ICPR'24](https://arxiv.org/html/2409.05327v1)) | ≥ 70.0 val with the DINOv2-B host (the blueprint's VFM target) |
 | **P4 MCubeS RGB-N** | 20 material classes | SpectraDINO **46.76** (ViT-L); StitchFusion **51.67 / 53.21 / 54.59** (MiT-B4 / +FFMs / Swin-L) ([StitchFusion](https://arxiv.org/html/2408.01343)) | Beat SpectraDINO at ViT-B with the aligned student as initialisation; claim only "competitive" with 53.21 |
@@ -313,7 +313,7 @@ The first cuts if time runs short are A19 (the ViT-L run) and the MCubeS row, wh
 
 The reframe audit's verdict is that **unseen-condition fusion is not new**. Seeing Through Fog trained on clear weather only and tested on unseen adverse weather, using a hand-crafted entropy cue ([arXiv 1902.08913](https://arxiv.org/abs/1902.08913)), and DCDA (ECCV 2026) defined type-open and severity-open weather protocols for LiDAR–radar fusion ([arXiv 2607.01983](https://arxiv.org/abs/2607.01983)). What is still open is a quantitative, per-pixel *spectral-physics* model of a trained RGB–NIR segmenter's marginal NIR utility, checked against cross-fitted counterfactual utility, together with a head-to-head of physics-constrained vs learned vs condition-token gates on held-out conditions in RGB-X segmentation. A new close threat is RAF (ECCV 2026), which explicitly supervises per-pixel reliability maps using cross-modal-similarity pseudo-labels ([arXiv 2607.04587](https://arxiv.org/abs/2607.04587)).
 
-Novelty therefore rises from 5 to **about 6/10 for A\*** and from 7 to **7.5/10 for a Q1 journal**. A′ must lead with the scientific claim and present gates as the instrument that tests it ([reframe audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_reframe_physics_ood.md>)). The recommended title is **"When Does Near-Infrared Help? A Falsifiable Spectral-Physics Account of Modality Utility for Robust RGB–NIR Segmentation."** Avoid "Learning Where to Trust…", which collides with arXiv 2610.36672.
+Novelty therefore rises from 5 to **about 6/10 for A\*** and from 7 to **7.5/10 for a Q1 journal**. A′ must lead with the scientific claim and present gates as the instrument that tests it ([reframe audit](../paper2_Q1_physics_when_NIR_helps/notes/paperA_reframe_physics_ood.md)). The recommended title is **"When Does Near-Infrared Help? A Falsifiable Spectral-Physics Account of Modality Utility for Robust RGB–NIR Segmentation."** Avoid "Learning Where to Trust…", which collides with arXiv 2610.36672.
 
 | A′ factor or component | Closest prior work | What remains open |
 |---|---|---|
@@ -330,7 +330,7 @@ Novelty therefore rises from 5 to **about 6/10 for A\*** and from 7 to **7.5/10 
 1. A falsifiable, per-pixel spectral-physics model of NIR's marginal utility in RGB–NIR segmentation, verified against cross-fitted dense counterfactual utility.
 2. The first held-out-condition and cross-camera evaluation protocol for RGB-X segmentation fusion gates, comparing physics-constrained, learned, condition-token and physics-input-MLP gates.
 3. A physically parameterised IDD-AW-C with matched control pairs, validated against real conditions.
-4. The first controlled benchmark of modern RGB-X architectures on IDD-AW. The Paper A audit rated this novel as infrastructure ([Paper A audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_novelty_audit.md>)).
+4. The first controlled benchmark of modern RGB-X architectures on IDD-AW. The Paper A audit rated this novel as infrastructure ([Paper A audit](../paper2_Q1_physics_when_NIR_helps/notes/paperA_novelty_audit.md)).
 
 **Not safe until shown:** "physics gates generalise better", "illuminant-aware fusion works on real data", and any IDD-AW SOTA.
 
@@ -348,7 +348,7 @@ Novelty therefore rises from 5 to **about 6/10 for A\*** and from 7 to **7.5/10 
 
 ### Data preparation and the instrument that measures utility
 
-**Data.** A′ uses the same IDD-AW pipeline and split as ALT-1′, with the full 26 level-3 classes. Report mIoU, SmIoU with the script's 8 traffic-participant classes, SmIoU with the paper's default important set (stating its members), and the mean safe-IoU over the 8 traffic-participant classes, all per condition. Train at 1024×768 with random scale 0.5–2.0, 768×768 crops and horizontal flips. Infer at 1024×768, upsample logits to native resolution, and state this explicitly, since prior work did not ([Paper A blueprint](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_experiment_blueprint.md>)).
+**Data.** A′ uses the same IDD-AW pipeline and split as ALT-1′, with the full 26 level-3 classes. Report mIoU, SmIoU with the script's 8 traffic-participant classes, SmIoU with the paper's default important set (stating its members), and the mean safe-IoU over the 8 traffic-participant classes, all per condition. Train at 1024×768 with random scale 0.5–2.0, 768×768 crops and horizontal flips. Infer at 1024×768, upsample logits to native resolution, and state this explicitly, since prior work did not ([Paper A blueprint](../paper2_Q1_physics_when_NIR_helps/notes/paperA_experiment_blueprint.md)).
 
 **Host.** StitchFusion-B2 with NIR modality dropout. Per sample: keep both modalities 0.5, drop NIR 0.35, drop RGB 0.15, where "drop" means a zero (mean) stream. Recipe:
 
@@ -398,15 +398,15 @@ All descriptors assume 8-bit gamma-encoded PNGs, which is unverified. Log the in
 | F3 photon budget | Utility rises monotonically with ΔCNR; the physics gate extrapolates to held-out low light | LOCO fold with low light held out, binned by σ | IDD-AW-C low-light severities |
 | F4 material (ex-Paper C) | Per-class predicted unique-NIR information rank-correlates with per-class fusion gain | Spearman over IDD-AW classes, with 3 seeds of RGB-only vs fused hosts | Hyperspectral City V2 band integration |
 
-**Running F4.** Hyperspectral City V2 has 128 bands over 450–950 nm, 19 Cityscapes classes and lossy H.264 compression ([dataset audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/wave1_datasets_audit.md>)). The steps:
+**Running F4.** Hyperspectral City V2 has 128 bands over 450–950 nm, 19 Cityscapes classes and lossy H.264 compression ([dataset audit](background_notes/wave1_datasets_audit.md)). The steps:
 
 1. Integrate its per-pixel spectra through approximate JAI bands (B/G/R centres about 465/540/615 nm; NIR about 850 nm, truncated at 950 nm). The real JAI quantum-efficiency curves are unpublished.
-2. Estimate per-class unique-NIR information. Validate the estimator on synthetic ground truth first; a reviewer in an ICLR 2026 thread demanded exactly this for MI claims ([venues note](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/venues_figures_and_paperC.md>)).
+2. Estimate per-class unique-NIR information. Validate the estimator on synthetic ground truth first; a reviewer in an ICLR 2026 thread demanded exactly this for MI claims ([venues note](background_notes/venues_figures_and_paperC.md)).
 3. Map Hyperspectral City V2's classes onto IDD-AW's.
 4. Pass condition: ρ ≥ 0.5 with p < 0.05. With n ≈ 19–26 classes this is under-powered, so pre-register that a null result goes into a section, not the headline.
 5. Describe this as integrating measured spectra through band curves, never as NIR→RGB conversion.
 
-**Light-source labels for F2.** Reuse Paper B's protocol, about 3–4 person-days ([Paper B blueprint](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperB_experiment_blueprint.md>)). Two annotators label the dominant and secondary source on all ~1,000 low-light images (Label Studio, with RGB, NIR and a ratio map side by side, 10–15 s per image), and region boxes are drawn on 200 images. The target agreement is Cohen's κ ≥ 0.6; below that, merge classes into "NIR-rich" and "NIR-poor white". As a physical validation, a ratio-only classifier should reach AUC ≥ 0.75 against the human labels. India had about 13.1 million LED streetlights by November 2024 ([Parliament reply](https://eparlib.nic.in/bitstream/123456789/779754/1/AU3430.pdf)). IDD-AW's night frames are probably LED-dominated, so NIR-rich strata may be small.
+**Light-source labels for F2.** Reuse Paper B's protocol, about 3–4 person-days ([Paper B blueprint](dropped_candidates/paperB_experiment_blueprint.md)). Two annotators label the dominant and secondary source on all ~1,000 low-light images (Label Studio, with RGB, NIR and a ratio map side by side, 10–15 s per image), and region boxes are drawn on 200 images. The target agreement is Cohen's κ ≥ 0.6; below that, merge classes into "NIR-rich" and "NIR-poor white". As a physical validation, a ratio-only classifier should reach AUC ≥ 0.75 against the human labels. India had about 13.1 million LED streetlights by November 2024 ([Parliament reply](https://eparlib.nic.in/bitstream/123456789/779754/1/AU3430.pdf)). IDD-AW's night frames are probably LED-dominated, so NIR-rich strata may be small.
 
 ### Gate arms, the leave-one-condition-out experiment, and the corruption suite
 
@@ -476,7 +476,7 @@ A′ does not chase SOTA, but its controlled IDD-AW benchmark must sit next to p
 | Reported block | ICPR'24 leaderboard; SixthSense 69.51 val | Different protocol | — | 68.54 / 68.32 (64.73 SmIoU) |
 | MCubeS host | StitchFusion-B2/B4 RGB-N with dropout | Cross-camera | 3 | StitchFusion 53.21 (B4 + FFMs) |
 
-Do not retrain Mask2Former Swin-L or InternImage-B. Each took about 4 A100-days in the competition; cite them instead ([Paper A blueprint](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_experiment_blueprint.md>)). The blueprint's controlled targets, StitchFusion-B2 ≥ B0 + 1.5 mIoU and per-condition gains largest in low light and rain, serve as sanity checks rather than claims.
+Do not retrain Mask2Former Swin-L or InternImage-B. Each took about 4 A100-days in the competition; cite them instead ([Paper A blueprint](../paper2_Q1_physics_when_NIR_helps/notes/paperA_experiment_blueprint.md)). The blueprint's controlled targets, StitchFusion-B2 ≥ B0 + 1.5 mIoU and per-condition gains largest in low light and rain, serve as sanity checks rather than claims.
 
 **Full ablation grid** (single-seed unless marked; confirmatory rows get 3 seeds):
 
@@ -538,7 +538,7 @@ The kill rule from the reframe audit: if G4 does not beat G3 on held-out ρ and 
 
 ## A 40-week calendar with an exit at every gate
 
-**No plan can guarantee better-than-published results**, and nothing here should be read as a promise. The thesis roadmap says the same thing in its first lines ([roadmap](</home/user/lowlight/research/PUBLICATION_ROADMAP.md>)). Every target number above is a heuristic. The notes contain no experiment run on these ideas, and IDD-AW's per-condition NIR gains are small.
+**No plan can guarantee better-than-published results**, and nothing here should be read as a promise. The thesis roadmap says the same thing in its first lines ([roadmap](https://github.com/Sajjan-Sam/lowlight/blob/main/research/PUBLICATION_ROADMAP.md)). Every target number above is a heuristic. The notes contain no experiment run on these ideas, and IDD-AW's per-condition NIR gains are small.
 
 What the plan can do is make failure cheap and recoverable. Each paper's most uncertain question is answered first, with inference-only or single-seed runs; the pass thresholds are written down before the data arrive; and every failure branch still ends in a submission. The two gates that decide whether ALT-1′ is an A\* paper at all (G0 and GNG-1) cost about **155 GPU-hours**, roughly 8% of the GPU time available through mid-March, and resolve by **December 13, 2026**.
 
@@ -588,7 +588,7 @@ The pass thresholds on 10% partial R², a ρ margin of 0.1, +1.5 mIoU and ±5 sa
 
 ### Venues and deadlines
 
-All 2027–28 dates are estimates from 2026 cycles; confirm them when they are announced ([venues note](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/venues_figures_and_paperC.md>)).
+All 2027–28 dates are estimates from 2026 cycles; confirm them when they are announced ([venues note](background_notes/venues_figures_and_paperC.md)).
 
 | Paper | Primary target | Deadline | Why | Fallback chain |
 |---|---|---|---|---|
@@ -615,7 +615,7 @@ The binding constraint is one student's attention across thesis Papers 1–2, AL
 
 | Candidate | Score (A\* / Q1) | Decisive reason it lost | Where its useful part went |
 |---|---|---|---|
-| Original Paper A (counterfactually supervised, physics-informed fusion gates as a method) | 5 / 7 | Pre-empted at sample level by TIER-MoE, 2608.15261 and GAUGE; RAF supervises per-pixel reliability; its "regret rate" and gate–utility metrics already exist; gains about +1 mIoU; title collision ([Paper A audit](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/paperA_novelty_audit.md>)) | Reframed as A′ |
+| Original Paper A (counterfactually supervised, physics-informed fusion gates as a method) | 5 / 7 | Pre-empted at sample level by TIER-MoE, 2608.15261 and GAUGE; RAF supervises per-pixel reliability; its "regret rate" and gate–utility metrics already exist; gains about +1 mIoU; title collision ([Paper A audit](../paper2_Q1_physics_when_NIR_helps/notes/paperA_novelty_audit.md)) | Reframed as A′ |
 | Paper B (NIR-guided enhancement protocol study + no-regret enhancer) | 3–4 / 6 | Reuses thesis protocols and metric; no-regret hole; small passive-NIR gains (IDD-AW low light 62 → 63 with stacking); nearest the colorization boundary in pitch-dark regions | Thesis chapter or WACV E&D; its light-source protocol feeds A′'s F2 |
 | Paper C (camera-conditioned spectral PID + conformal) | 4 / 6.5 | Rank test with 19–26 classes is under-powered; two loosely coupled halves; overlaps A; the Galway group is active in this exact space | Material factor F4 in A′; conformal half dropped |
 | ALT-1 as literally stated (pure OV from NIR) | 5 / 7 | "SpectraDINO + Talk2DINO"; OpenESS-for-NIR; weak "open vocabulary" on 26 mostly familiar classes | Rescoped into ALT-1′ |
@@ -624,18 +624,18 @@ The binding constraint is one student's attention across thesis Papers 1–2, AL
 | ALT-4a (RGB–NIR disagreement as failure detector) | ~5 / 6–7 | Prior art not fully searched; reads as uncertainty quantification with NIR tangential | Analysis row A21 in ALT-1′ |
 | ALT-4b (thermal-privileged training, RGB-NIR deployment) | 4 / 6 | Learning with privileged information is old; TRNT already handles uncertain modalities | Dropped |
 | Depth/stereo; road wetness | 3–4; infeasible | Kim & Baek and MS2 exist; no labelled wetness data, and silicon NIR misses the strong water bands | Dropped |
-| S1 hyperspectral RGB+NIR simulator + pretraining | 3.5 / 6 | Fog is wavelength-flat; ICVL is 201 non-driving scenes; reads as engineering ([spectral note](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/wave1_spectral_physics_imaging.md>)) | Physics reused in IDD-AW-C |
+| S1 hyperspectral RGB+NIR simulator + pretraining | 3.5 / 6 | Fog is wavelength-flat; ICVL is 201 non-driving scenes; reads as engineering ([spectral note](background_notes/wave1_spectral_physics_imaging.md)) | Physics reused in IDD-AW-C |
 | S2 complementarity maps + prior | 4 / 6.5 | Same as Paper C | F4 |
 | S3 RGB-IR demosaicking + decontamination | 3 / 5 | No real raw data without hardware; no benchmark | Dropped |
 | S4 weather-aware NIR band co-design | 4.5 / 6.5 | Simulation-only conclusions; the answer may be trivial; Galway scoop risk | Dropped |
 | S5 ambiguity-aware conformal sets | 3.5 / 6 | Physics looks cosmetic; exchangeability breaks across weather | Dropped |
 | S6a raw RGB-IR perception; S6b differential attenuation as a gate cue | 4.5 / 6.5; 3.5 / 5.5 | S6a: incomplete prior-art check, simulation-heavy, and IDD-AW's prism camera has no NIR contamination to test it. S6b: the cue vanishes in fog and rain | S6b's q̂ survives as A′'s F1 falsification test |
-| R1 task-preserving NIR-guided enhancement; R5 "when does NIR help" benchmark | 5 / 7; 4 / 7–8 | Restoration overlaps the thesis topic and sits near colorization; "TarDAL for NIR"; a benchmark without a method ([restoration note](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/wave1_nir_assisted_restoration.md>)) | Became Paper B, then demoted |
+| R1 task-preserving NIR-guided enhancement; R5 "when does NIR help" benchmark | 5 / 7; 4 / 7–8 | Restoration overlaps the thesis topic and sits near colorization; "TarDAL for NIR"; a benchmark without a method ([restoration note](background_notes/wave1_nir_assisted_restoration.md)) | Became Paper B, then demoted |
 | R2 learning from unreliable references | 5 / 7 | High scoop risk from the NAID group; needs a new dynamic-scene dataset; closest to the idea file's colorization Direction II | Dropped |
 | R3 spectrally grounded structure transfer | 4 / 6 | One NIR band cannot pin down reflectance; learned gates are near ceiling (SFM is +0.23 dB over summation) | Dropped |
 | R4 illuminant-spectrum-aware NIR guidance | 6 / 7 | No illuminant labels and no spectrometer; as restoration it collides with the thesis | F2 in A′, as perception rather than restoration |
 | R6a NIR guidance for rain/snow; R6b noisy-guide passive NIR | 5 / 7; 6 / 7 | No clean targets on real adverse or passive-night data | Dropped |
-| Wave-1 perception C1–C7 | 3–6 | C4 privileged NIR 3; C5 hierarchical conformal 4–5 (capstone overlap); C6 synthetic NIR 4 (data-processing objection, translation-adjacent) ([perception note](</home/user/nirdiscusspaper/research_notes/RGB NIR paper plans beyond colorization/wave1_rgbnir_perception_sota.md>)) | C1 and C2 → A′; C3 → ALT-2 → ALT-1′; C7a → F2; C7b → shared infrastructure |
+| Wave-1 perception C1–C7 | 3–6 | C4 privileged NIR 3; C5 hierarchical conformal 4–5 (capstone overlap); C6 synthetic NIR 4 (data-processing objection, translation-adjacent) ([perception note](background_notes/wave1_rgbnir_perception_sota.md)) | C1 and C2 → A′; C3 → ALT-2 → ALT-1′; C7a → F2; C7b → shared infrastructure |
 
 A pattern runs through the losers. Every restoration idea (R1–R6, Paper B) either collides with the student's own enhancement thesis or drifts toward generating colour from NIR, the two things the brief ruled out. Every pure-physics or sensor-design idea (S1, S3, S4, S6a) needs hardware or lives only in simulation. Every uncertainty idea (S5, C5, ALT-4a) makes NIR tangential. The two survivors are the ones that use real, pixel-aligned NIR as a *perception input* and make claims a public benchmark can check.
 
